@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "coderef",
-    "slug": "coderef",
+    "name": "SIIR",
+    "slug": "SIIR",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -29,7 +29,7 @@
     },
     
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon.png"
     }
   }
 }

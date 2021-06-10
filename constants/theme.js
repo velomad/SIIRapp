@@ -5,9 +5,8 @@ export const COLORS = {
   black: "#1E1F20",
   white: "#FFFFFF",
   gray: "#6A6A6A",
-  primary: "#ab8fea",
-  primaryDark: "#9a89bc",
-  secondary: "#e0d9f3",
+  primary: "#3773e1",
+  secondary: "#fa5793",
   danger: "red",
   success: "green",
 };

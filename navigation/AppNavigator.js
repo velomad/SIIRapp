@@ -17,12 +17,14 @@ function getHeaderTitle(route) {
   switch (routeName) {
     case "home":
       return "Home";
-    case "offers":
-      return "Offers";
-    case "network":
-      return "Network";
-    case "account":
-      return "Account";
+    case "categories":
+      return "Categories";
+    case "post":
+      return "Post";
+    case "collections":
+      return "Collections";
+    case "profile":
+      return "Profile";
   }
 }
 
@@ -31,13 +33,13 @@ const AppNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="tabs"
+          name="home"
           component={TabNavigator}
           options={({ route }) => ({
             headerTitle: getHeaderTitle(route),
-
+            headerStatusBarHeight:0,
             headerTitleStyle: {
-              fontSize: SIZES.h2,
+              fontSize: SIZES.h3,
               alignSelf: "center",
             },
           })}

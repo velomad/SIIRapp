@@ -1,66 +1,77 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Home, Offers, Network, Account } from "../screens";
+import { Home, Collections, Profile, Categories, Post } from "../screens";
 import { COLORS, SIZES } from "../constants";
 import * as Icon from "@expo/vector-icons";
+import { AddButton } from "./components";
 
 const Tab = createBottomTabNavigator();
 
-const tabsData = (tintColor) => {
-  return [
-    {
-      name: "home",
-      component: Home,
-      iconName: "home",
-    },
-    {
-      name: "offers",
-      component: Offers,
-      iconName: "local-offer",
-    },
-    {
-      name: "network",
-      component: Network,
-      iconName: "device-hub",
-    },
-    {
-      name: "account",
-      component: Account,
-      iconName: "account-circle",
-    },
-  ];
-};
-
-const TabNavigator = () => {
+const TabNavigator = (props) => {
   return (
     <Tab.Navigator
       tabBarOptions={{
         keyboardHidesTabBar: true,
         showLabel: false,
-        activeTintColor: COLORS.blue,
+        activeTintColor: COLORS.primary,
         style: {
+          position: "absolute",
+          bottom: SIZES.width / 40,
+          left: SIZES.width / 40,
+          right: SIZES.width / 40,
+          elevation: 0,
+          borderColor: "#fff",
+          borderTopColor: "#fff",
+          borderRadius: SIZES.width,
           backgroundColor: COLORS.white,
           height: SIZES.height / 15,
         },
         labelStyle: { fontSize: SIZES.body4 },
       }}
     >
-      {tabsData("red").map((item, index) => (
-        <Tab.Screen
-          key={index}
-          name={item.name}
-          component={item.component}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Icon.MaterialIcons
-                name={item.iconName}
-                size={28}
-                color={color}
-              />
-            ),
-          }}
-        />
-      ))}
+      <Tab.Screen
+        name="home"
+        component={Home}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon.MaterialIcons name="home" size={28} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="categories"
+        component={Categories}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon.MaterialIcons name="list" size={28} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="post"
+        component={Post}
+        options={{
+          tabBarButton: (props) => <AddButton {...props} />,
+        }}
+      />
+      <Tab.Screen
+        name="collections"
+        component={Collections}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon.MaterialIcons name="collections" size={28} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="profile"
+        component={Profile}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon.MaterialIcons name="account-circle" size={28} color={color} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
