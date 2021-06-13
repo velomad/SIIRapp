@@ -14,7 +14,6 @@ const InputField = ({
   return (
     <TextInput
       keyboardType={type}
-      elevation={2}
       style={styles.inputStyle}
       placeholderTextColor="#666"
       autoFocus={fieldFocus}
@@ -33,10 +32,7 @@ const styles = StyleSheet.create({
     width: SIZES.width / 1.1,
     height: SIZES.height / 15,
     paddingHorizontal: 10,
-    marginBottom: 20,
-    fontSize: SIZES.h4,
-    color: COLORS.gray,
-    backgroundColor: "#fff",
-    borderRadius: SIZES.width / 40,
+    borderBottomWidth: 1,
+    borderColor: COLORS.lightGray,
   },
 });

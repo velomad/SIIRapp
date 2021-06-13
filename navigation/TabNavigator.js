@@ -15,14 +15,13 @@ const TabNavigator = (props) => {
         showLabel: false,
         activeTintColor: COLORS.primary,
         style: {
-          position: "absolute",
-          bottom: SIZES.width / 40,
-          left: SIZES.width / 40,
-          right: SIZES.width / 40,
+          // position: "absolute",
+          // bottom: SIZES.width / 40,
+          // left: SIZES.width / 40,
+          // right: SIZES.width / 40,
           elevation: 0,
           borderColor: "#fff",
           borderTopColor: "#fff",
-          borderRadius: SIZES.width,
           backgroundColor: COLORS.white,
           height: SIZES.height / 15,
         },
@@ -33,8 +32,13 @@ const TabNavigator = (props) => {
         name="home"
         component={Home}
         options={{
+          // tabBarBadge: "1",
           tabBarIcon: ({ color }) => (
-            <Icon.MaterialIcons name="home" size={28} color={color} />
+            <Icon.MaterialIcons
+              name="home"
+              size={SIZES.width / 15}
+              color={color}
+            />
           ),
         }}
       />
@@ -43,7 +47,11 @@ const TabNavigator = (props) => {
         component={Categories}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon.MaterialIcons name="list" size={28} color={color} />
+            <Icon.MaterialIcons
+              name="list"
+              size={SIZES.width / 15}
+              color={color}
+            />
           ),
         }}
       />
@@ -59,7 +67,11 @@ const TabNavigator = (props) => {
         component={Collections}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon.MaterialIcons name="collections" size={28} color={color} />
+            <Icon.MaterialIcons
+              name="collections"
+              size={SIZES.width / 15}
+              color={color}
+            />
           ),
         }}
       />
@@ -68,7 +80,11 @@ const TabNavigator = (props) => {
         component={Profile}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon.MaterialIcons name="account-circle" size={28} color={color} />
+            <Icon.MaterialIcons
+              name="account-circle"
+              size={SIZES.width / 15}
+              color={color}
+            />
           ),
         }}
       />

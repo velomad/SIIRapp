@@ -33,6 +33,7 @@ const CustomButton = ({
             color: color,
             textAlign: "center",
             fontWeight: bold ? "700" : "600",
+            textTransform: "capitalize",
           }}
         >
           {title}

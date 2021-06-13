@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Animated,
+  PixelRatio,
 } from "react-native";
 import * as Icon from "@expo/vector-icons";
 import { COLORS, SIZES } from "../../constants";
@@ -56,6 +57,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: SIZES.width / 7,
     borderRadius: 50,
-    top: -SIZES.height / 30,
+    elevation: 10,
+    top: SIZES.height > 700 ? -32 : -25,
   },
 });

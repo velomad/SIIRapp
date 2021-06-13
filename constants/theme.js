@@ -4,8 +4,10 @@ const { width, height } = Dimensions.get("window");
 export const COLORS = {
   black: "#1E1F20",
   white: "#FFFFFF",
+  lightGray: "#999",
   gray: "#6A6A6A",
   primary: "#3773e1",
+  primaryLight: "#dbeafe",
   secondary: "#fa5793",
   danger: "red",
   success: "green",
@@ -28,6 +30,8 @@ export const SIZES = {
   body2: 22,
   body3: 16,
   body4: 14,
+  body5: 12,
+  body6: 10,
 
   // app dimensions
   width,
@@ -46,10 +50,12 @@ function actuatedNormalize(size) {
 }
 
 export const FONTS = {
-  h1: { fontFamily: "Roboto-Regular", fontSize: SIZES.h1, lineHeight: 36 },
-  h2: { fontFamily: "Roboto-Regular", fontSize: SIZES.h2, lineHeight: 30 },
-  h3: { fontFamily: "Roboto-Regular", fontSize: SIZES.h3, lineHeight: 22 },
-  h4: { fontFamily: "Roboto-Regular", fontSize: SIZES.h4, lineHeight: 22 },
+  h1: { fontFamily: "Roboto-Regular", fontSize: actuatedNormalize(SIZES.h1) },
+  h2: { fontFamily: "Roboto-Regular", fontSize: actuatedNormalize(SIZES.h2) },
+  h3: { fontFamily: "Roboto-Regular", fontSize: actuatedNormalize(SIZES.h3) },
+  h4: { fontFamily: "Roboto-Regular", fontSize: actuatedNormalize(SIZES.h4) },
+  h5: { fontFamily: "Roboto-Regular", fontSize: actuatedNormalize(SIZES.h5) },
+  h6: { fontFamily: "Roboto-Regular", fontSize: actuatedNormalize(SIZES.h6) },
   body1: {
     fontFamily: "Roboto-Regular",
     fontSize: actuatedNormalize(SIZES.body1),
@@ -65,6 +71,14 @@ export const FONTS = {
   body4: {
     fontFamily: "Roboto-Regular",
     fontSize: actuatedNormalize(SIZES.body4),
+  },
+  body5: {
+    fontFamily: "Roboto-Regular",
+    fontSize: actuatedNormalize(SIZES.body5),
+  },
+  body6: {
+    fontFamily: "Roboto-Regular",
+    fontSize: actuatedNormalize(SIZES.body6),
   },
 };
 
