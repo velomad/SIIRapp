@@ -5,7 +5,7 @@ import {
   getFocusedRouteNameFromRoute,
 } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Home } from "../screens";
+import { CreateCollection, Home } from "../screens";
 import { COLORS, SIZES } from "../constants";
 import AuthNavigator from "./AuthNavigator";
 import TabNavigator from "./TabNavigator";
@@ -54,6 +54,14 @@ const AppNavigator = (props) => {
           component={Notifications}
           options={{
             headerTitle: "Notifications",
+          }}
+        />
+
+        <Stack.Screen
+          name="createCollection"
+          component={CreateCollection}
+          options={{
+            headerTitle: "Create Collection",
           }}
         />
 

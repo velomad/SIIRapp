@@ -6,3 +6,4 @@ export { default as Home } from "./Home";
 export { default as Collections } from "./Collections";
 export { default as Categories } from "./Categories";
 export { default as Post } from "./Post";
+export { default as CreateCollection } from "./CreateCollection";

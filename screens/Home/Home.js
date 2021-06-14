@@ -58,7 +58,7 @@ const Home = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#fff" />
+      <FocusAwareStatusBar barStyle="dark-content" backgroundColor={COLORS.white}/>
 
       <View
         style={{
@@ -92,7 +92,7 @@ const Home = ({ navigation }) => {
         style={styles.shayriContainer}
         showsVerticalScrollIndicator={false}
       >
-        <ShayriCard elevation={1} />
+        <ShayriCard elevation={1} navigation={navigation} />
       </ScrollView>
     </View>
   );

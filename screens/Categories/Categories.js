@@ -55,7 +55,7 @@ const Categories = () => {
     <View style={styles.container}>
       <FocusAwareStatusBar
         barStyle="dark-content"
-        backgroundColor={COLORS.white}
+        backgroundColor={COLORS.whiteDark}
       />
 
       <View

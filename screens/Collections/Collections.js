@@ -1,10 +1,56 @@
-import React from "react";
-import { View, Text, Image, StyleSheet, ImageBackground } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
+import axios from "axios";
+import * as MediaLibrary from "expo-media-library";
+import * as FileSystem from "expo-file-system";
+import { Camera } from "expo-camera";
+import * as Sharing from "expo-sharing";
+
 import { FocusAwareStatusBar } from "../../components";
 import { COLORS, FONTS, images, SIZES } from "../../constants";
 import { FontAwesome } from "@expo/vector-icons";
 
 const Collections = () => {
+  const downloadFile = () => {
+    return new Promise((resolve, reject) => {
+      const uri = "http://techslides.com/demos/sample-videos/small.mp4";
+      let fileUri = FileSystem.documentDirectory + "small.mp4";
+      FileSystem.downloadAsync(uri, fileUri)
+        .then(({ uri }) => {
+          saveFile(uri);
+          resolve(uri);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+
+  saveFile = async (fileUri) => {
+    const { status } = await Camera.requestPermissionsAsync();
+    if (status === "granted") {
+      const asset = await MediaLibrary.createAssetAsync(fileUri);
+      await MediaLibrary.createAlbumAsync("Download", asset, false);
+    }
+  };
+
+  const onShare = () => {
+    downloadFile()
+      .then((imegeUrl) => {
+        Sharing.shareAsync(imegeUrl);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <View style={styles.container}>
       <FocusAwareStatusBar
@@ -42,11 +88,14 @@ const Collections = () => {
 
         <View style={styles.collectionInfo}>
           <Text style={styles.dateText}>{new Date().toDateString()}</Text>
-          <FontAwesome
-            name="share-square-o"
-            size={SIZES.width / 20}
-            color={COLORS.primary}
-          />
+
+          <TouchableOpacity onPress={onShare}>
+            <FontAwesome
+              name="share-square-o"
+              size={SIZES.width / 20}
+              color={COLORS.primary}
+            />
+          </TouchableOpacity>
         </View>
       </View>
     </View>

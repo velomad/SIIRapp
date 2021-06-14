@@ -47,8 +47,6 @@ const Profile = ({ navigation }) => {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
       setImage(result.uri);
     }
@@ -130,7 +128,7 @@ const Profile = ({ navigation }) => {
     <View style={styles.container}>
       <FocusAwareStatusBar
         barStyle="dark-content"
-        backgroundColor={COLORS.white}
+        backgroundColor={COLORS.whiteDark}
       />
       <BottomSheet
         ref={sheetRef}
@@ -141,9 +139,11 @@ const Profile = ({ navigation }) => {
         enabledGestureInteraction={true}
         renderContent={RenderContent}
       />
-      <Animated.View style={{
-        opacity : Animated.add(0.2, Animated.multiply(fall, 1.0))
-      }}>
+      <Animated.View
+        style={{
+          opacity: Animated.add(0.2, Animated.multiply(fall, 1.0)),
+        }}
+      >
         <View style={styles.profileContainer}>
           <View style={styles.sections}>
             <View>

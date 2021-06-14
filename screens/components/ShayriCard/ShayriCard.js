@@ -1,12 +1,35 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  ToastAndroid,
+} from "react-native";
 import { Card } from "../../../components";
 import { SIZES, COLORS, images, FONTS } from "../../../constants";
 import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
+import Clipboard from "expo-clipboard";
 
-const ShayriCard = ({ elevation }) => {
+const shayri = `तेरे ख्याल से खुद को छुपा के देखा है, दिल-ओ-नजर को रुला-रुला के
+देखा है, तू नहीं तो कुछ भी नहीं है तेरी कसम, मैंने कुछ पल तुझे
+भुला के देखा है।`;
+
+const ShayriCard = ({ elevation, navigation }) => {
+  const onCopy = () => {
+    Clipboard.setString(shayri);
+    ToastAndroid.showWithGravityAndOffset(
+      "text copied",
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+      0,
+      SIZES.height / 4
+    );
+  };
+
   return (
     <View style={{ padding: SIZES.width / 40 }}>
       <Card elevation={elevation} rounded={10} backgroundColor={COLORS.white}>
@@ -27,45 +50,50 @@ const ShayriCard = ({ elevation }) => {
 
         <View style={styles.bodyContainer}>
           <View>
-            <Text style={styles.bodyText}>
-              तेरे ख्याल से खुद को छुपा के देखा है, दिल-ओ-नजर को रुला-रुला के
-              देखा है, तू नहीं तो कुछ भी नहीं है तेरी कसम, मैंने कुछ पल तुझे
-              भुला के देखा है।
-            </Text>
+            <Text style={styles.bodyText}>{shayri}</Text>
           </View>
 
           <View style={styles.optionsContainer}>
             <View style={styles.leftOptions}>
-              <View style={{ paddingRight: SIZES.width / 25 }}>
+              <TouchableOpacity
+                style={{ paddingRight: SIZES.width / 25 }}
+                onPress={onCopy}
+              >
                 <FontAwesome5
                   name="copy"
                   size={SIZES.width / 20}
                   color={COLORS.lightGray}
                 />
-              </View>
-              <View style={{ paddingRight: SIZES.width / 25 }}>
+              </TouchableOpacity>
+              <TouchableOpacity style={{ paddingRight: SIZES.width / 25 }}>
                 <FontAwesome5
                   name="share-square"
                   size={SIZES.width / 20}
                   color={COLORS.lightGray}
                 />
-              </View>
-              <View>
+              </TouchableOpacity>
+              <TouchableOpacity>
                 <AntDesign
                   name="like1"
                   size={SIZES.width / 20}
                   color={COLORS.primary}
                 />
-              </View>
+              </TouchableOpacity>
             </View>
             <View>
-              <View>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("createCollection", {
+                    shayri,
+                  })
+                }
+              >
                 <FontAwesome5
                   name="edit"
                   size={SIZES.width / 20}
                   color={COLORS.lightGray}
                 />
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
