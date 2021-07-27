@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
   Text,
@@ -9,14 +9,36 @@ import {
   ScrollView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import customAxios from "../../utils/interceptor";
 import { COLORS, FONTS, SIZES } from "../../constants";
 import {
   CustomButton,
   InputField,
   KeyboardAvoidingWrapper,
 } from "../../components";
+import toastMessage from "../../utils/Toast";
 
 const Signup = ({ navigation }) => {
+  const [inputValue, setInputValue] = useState({});
+  const { username, emailId, password, bio } = inputValue;
+
+  const handleChange = (e) => {
+    const { name, type, text } = e;
+    setInputValue((prev) => ({
+      ...prev,
+      [name]: text,
+    }));
+  };
+
+  const handleSignup = async () => {
+    try {
+      const result = await customAxios.post("/auth/signup", inputValue);
+      if (result) navigation.navigate("login");
+    } catch (error) {
+      toastMessage(error.response.data.error.message);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -40,18 +62,39 @@ const Signup = ({ navigation }) => {
       </View>
 
       <View style={styles.formContainer}>
-        <InputField placeholder="name" name="name" type="default" />
         <InputField
-          placeholder="Mobile Number"
-          name="mobileNumber"
-          type="phone-pad"
-          secure={true}
+          placeholder="Username"
+          name="userName"
+          type="default"
+          value={username}
+          onChange={handleChange}
         />
-        <InputField placeholder="Email" name="email" type="email-address" />
-        <InputField placeholder="Refer  Code" name="referCode" type="default" />
+        <InputField
+          placeholder="Email"
+          name="emailId"
+          type="email-address"
+          value={emailId}
+          onChange={handleChange}
+        />
+        <InputField
+          placeholder="Password"
+          name="password"
+          type="default"
+          secure={true}
+          value={password}
+          onChange={handleChange}
+        />
+        <InputField
+          placeholder="Bio"
+          name="bio"
+          type="default"
+          value={bio}
+          onChange={handleChange}
+        />
         <View style={{ paddingTop: "5%" }}>
           <CustomButton
-            title="Create Account"
+            onPress={handleSignup}
+            title="Create "
             background={COLORS.secondary}
             color={COLORS.primaryDark}
             rounded={5}

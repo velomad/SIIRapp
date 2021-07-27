@@ -36,44 +36,42 @@ const AppNavigator = (props) => {
   console.log(props);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="SIIR"
-          component={TabNavigator}
-          options={({ route }) => ({
-            headerStatusBarHeight: 0,
-            header: ({ navigation }) => (
-              <Header title={getHeaderTitle(route)} navigation={navigation} />
-            ),
-          })}
-        />
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SIIR"
+        component={TabNavigator}
+        options={({ route }) => ({
+          headerStatusBarHeight: 0,
+          header: ({ navigation }) => (
+            <Header title={getHeaderTitle(route)} navigation={navigation} />
+          ),
+        })}
+      />
 
-        <Stack.Screen
-          name="notifications"
-          component={Notifications}
-          options={{
-            headerTitle: "Notifications",
-          }}
-        />
+      <Stack.Screen
+        name="notifications"
+        component={Notifications}
+        options={{
+          headerTitle: "Notifications",
+        }}
+      />
 
-        <Stack.Screen
-          name="createCollection"
-          component={CreateCollection}
-          options={{
-            headerTitle: "Create Collection",
-          }}
-        />
+      <Stack.Screen
+        name="createCollection"
+        component={CreateCollection}
+        options={{
+          headerTitle: "Create Collection",
+        }}
+      />
 
-        <Stack.Screen
-          name="editBio"
-          component={EditBio}
-          options={{
-            headerTitle: "Edit",
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+      <Stack.Screen
+        name="editBio"
+        component={EditBio}
+        options={{
+          headerTitle: "Edit",
+        }}
+      />
+    </Stack.Navigator>
   );
 };
 

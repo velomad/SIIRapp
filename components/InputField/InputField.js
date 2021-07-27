@@ -9,10 +9,26 @@ const InputField = ({
   name,
   placeholder,
   type,
+  height,
   onChange,
+  multiline,
+  numberOfLines,
 }) => {
+  const styles = StyleSheet.create({
+    inputStyle: {
+      width: SIZES.width / 1.1,
+      height: !height ? SIZES.height / 15 : height,
+      textAlignVertical: "top",
+      paddingHorizontal: 10,
+      borderBottomWidth: 1,
+      borderColor: COLORS.lightGray,
+    },
+  });
+
   return (
     <TextInput
+      multiline={multiline}
+      numberOfLines={numberOfLines}
       keyboardType={type}
       style={styles.inputStyle}
       placeholderTextColor="#666"
@@ -26,13 +42,3 @@ const InputField = ({
 };
 
 export default InputField;
-
-const styles = StyleSheet.create({
-  inputStyle: {
-    width: SIZES.width / 1.1,
-    height: SIZES.height / 15,
-    paddingHorizontal: 10,
-    borderBottomWidth: 1,
-    borderColor: COLORS.lightGray,
-  },
-});

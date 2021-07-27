@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
 import SelectMultiple from "react-native-select-multiple";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -90,11 +90,18 @@ const Categories = () => {
         </View>
       </View>
 
-      <SelectMultiple
-        items={categories}
-        selectedItems={selectedCategories}
-        onSelectionsChange={onSelectionsChange}
-      />
+      <ScrollView
+        indicatorStyle={{ color: COLORS.primary }}
+        showsVerticalScrollIndicator={true}
+        endFillColor={COLORS.primary}
+        fadingEdgeLength={150}
+      >
+        <SelectMultiple
+          items={categories}
+          selectedItems={selectedCategories}
+          onSelectionsChange={onSelectionsChange}
+        />
+      </ScrollView>
     </View>
   );
 };

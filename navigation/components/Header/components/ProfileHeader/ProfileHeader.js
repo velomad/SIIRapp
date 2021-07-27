@@ -1,22 +1,28 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { COLORS, FONTS, SIZES } from "../../../../../constants";
 import gs from "../globalHeaderStyles";
 import { AntDesign } from "@expo/vector-icons";
+import useAuth from "../../../../../auth/useAuth";
 
-const ProfileHeader = ({ title, onPress }) => {
+const ProfileHeader = ({ title }) => {
+  const auth = useAuth();
+  const logout = () => {
+    auth.logOut();
+  };
+
   return (
     <View style={[gs.container]}>
       <View style={styles.container}>
         <Text style={[gs.titleTextLeft]}>{title}</Text>
 
-        <TouchableHighlight onPress={onPress}>
+        <TouchableOpacity onPress={logout}>
           <AntDesign
             name="logout"
             size={SIZES.width / 20}
             color={COLORS.secondary}
           />
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     </View>
   );

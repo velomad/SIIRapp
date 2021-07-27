@@ -51,34 +51,28 @@ function actuatedNormalize(size) {
 }
 
 export const FONTS = {
-  h1: { fontFamily: "Roboto-Regular", fontSize: actuatedNormalize(SIZES.h1) },
-  h2: { fontFamily: "Roboto-Regular", fontSize: actuatedNormalize(SIZES.h2) },
-  h3: { fontFamily: "Roboto-Regular", fontSize: actuatedNormalize(SIZES.h3) },
-  h4: { fontFamily: "Roboto-Regular", fontSize: actuatedNormalize(SIZES.h4) },
-  h5: { fontFamily: "Roboto-Regular", fontSize: actuatedNormalize(SIZES.h5) },
-  h6: { fontFamily: "Roboto-Regular", fontSize: actuatedNormalize(SIZES.h6) },
+  h1: { fontSize: actuatedNormalize(SIZES.h1) },
+  h2: { fontSize: actuatedNormalize(SIZES.h2) },
+  h3: { fontSize: actuatedNormalize(SIZES.h3) },
+  h4: { fontSize: actuatedNormalize(SIZES.h4) },
+  h5: { fontSize: actuatedNormalize(SIZES.h5) },
+  h6: { fontSize: actuatedNormalize(SIZES.h6) },
   body1: {
-    fontFamily: "Roboto-Regular",
     fontSize: actuatedNormalize(SIZES.body1),
   },
   body2: {
-    fontFamily: "Roboto-Regular",
     fontSize: actuatedNormalize(SIZES.body2),
   },
   body3: {
-    fontFamily: "Roboto-Regular",
     fontSize: actuatedNormalize(SIZES.body3),
   },
   body4: {
-    fontFamily: "Roboto-Regular",
     fontSize: actuatedNormalize(SIZES.body4),
   },
   body5: {
-    fontFamily: "Roboto-Regular",
     fontSize: actuatedNormalize(SIZES.body5),
   },
   body6: {
-    fontFamily: "Roboto-Regular",
     fontSize: actuatedNormalize(SIZES.body6),
   },
 };

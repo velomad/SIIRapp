@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
   Text,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   ScrollView,
+  Keyboard,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS, FONTS, SIZES } from "../../constants";
@@ -15,8 +16,40 @@ import {
   InputField,
   KeyboardAvoidingWrapper,
 } from "../../components";
+import customAxios from "../../utils/interceptor";
+import toastMessage from "../../utils/Toast";
+import useAuth from "../../auth/useAuth";
 
 const Login = ({ navigation }) => {
+  const auth = useAuth();
+  const [inputValue, setInputValue] = useState({});
+  const { username, password } = inputValue;
+
+  const handleChange = (e) => {
+    const { name, type, text } = e;
+    setInputValue((prev) => ({
+      ...prev,
+      [name]: text,
+    }));
+  };
+
+  console.log(inputValue);
+
+  const handleLogin = async () => {
+    console.log(inputValue);
+
+    Keyboard.dismiss();
+    try {
+      const result = await customAxios.post("/auth/login", inputValue);
+      console.log(inputValue);
+      auth.logIn(result.data.token);
+      console.log(result.data);
+    } catch (error) {
+      console.log(error);
+      toastMessage(error.response.data.error.message);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -28,7 +61,7 @@ const Login = ({ navigation }) => {
 
       <View style={styles.introText}>
         <Text style={{ ...FONTS.body2, color: COLORS.gray }}>
-          Continue With Phone
+          Continue With Username
         </Text>
 
         <View
@@ -53,13 +86,25 @@ const Login = ({ navigation }) => {
 
       <View style={styles.formContainer}>
         <InputField
-          placeholder="Mobile Number"
-          name="mobileNumber"
-          type="phone-pad"
-          secure={true}
+          placeholder="Username"
+          name="userName"
+          type="default"
+          value={username}
+          onChange={handleChange}
         />
+        <View style={{ marginVertical: "5%" }} />
+        <InputField
+          placeholder="Password"
+          name="password"
+          secure={true}
+          type="default"
+          value={password}
+          onChange={handleChange}
+        />
+
         <View style={{ paddingTop: "5%" }}>
           <CustomButton
+            onPress={handleLogin}
             title="Login"
             background={COLORS.secondary}
             color={COLORS.primaryDark}
